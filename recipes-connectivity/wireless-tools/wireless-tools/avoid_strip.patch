@@ -1,18 +1,8 @@
-wireless_tools: Avoid stripping iwmulticall
-
-Upstream-Status: Inappropriate [other]
-  The removed code was from upstream.
-
-Signed-off-by: Mark Hatle <mark.hatle@windriver.com>
-
-diff -ur wireless_tools.29.orig/Makefile wireless_tools.29/Makefile
---- wireless_tools.29.orig/Makefile	2011-06-18 11:35:12.183907453 -0500
-+++ wireless_tools.29/Makefile	2011-06-18 11:38:09.995907985 -0500
-@@ -135,9 +135,8 @@
+--- wireless_tools.30.orig/Makefile	2025-05-04 00:00:31.987356030 +0900
++++ wireless_tools.30/Makefile	2025-05-04 00:01:00.345479213 +0900
+@@ -139,7 +139,7 @@
  
- macaddr: macaddr.o $(IWLIB)
- 
--# Always do symbol stripping here
+ # Always do symbol stripping here
  iwmulticall: iwmulticall.o
 -	$(CC) $(LDFLAGS) -Wl,-s $(XCFLAGS) -o $@ $^ $(LIBS)
 +	$(CC) $(LDFLAGS) $(STRIPFLAGS) $(XCFLAGS) -o $@ $^ $(LIBS)
